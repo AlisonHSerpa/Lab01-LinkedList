@@ -35,32 +35,35 @@ public class Lista {
         No n = head;
         while (n.getValor() != i){
             if (n.getProximo() != null){
+                n = n.getProximo();
+            }
+            else {
                 return false;
             }
-            n = n.getProximo();
-            System.out.println("d");
         }
-        System.out.println(n.getValor());
+
         //se sair do loop, eh por que achou
         return true;
     }
 
     public int buscaIndice(int i) {
-        //contador para percorrer a lista
+        //contador para salvar os indices da lista
         int count = 0;
 
-        //enquanto nao chegar no indice, ele percorre
+        //procura o valor e se chegar no ultimo e nao achar, eh falso
         No n = head;
-        while(n.getProximo() != null){
-            if (n.getValor() == i){
-                return count;
+        while (n.getValor() != i){
+            if (n.getProximo() != null){
+                n = n.getProximo();
+                count++;
             }
-            n = n.getProximo();
-            count++;
+            else {
+                return -1;
+            }
         }
-        
-        //Nao tem esse indice
-        return -1;
+
+        //se sair do loop, eh por que achou
+        return count;
     }
 
     public void insereFim(int i) {
@@ -80,6 +83,10 @@ public class Lista {
     }
 
     public void removeInicio() {
+        if (head == null){
+            return;
+        }
+
         //define que a nova cabeca deve ser o proximo No da antiga cabeca
         No newHead = head.getProximo();
         //seta a nova cabeca
@@ -87,18 +94,34 @@ public class Lista {
     }
 
     public void removeFim() {
-        //o No n vai percorrer a lista, o No Before
+        if (head == null){
+            return;
+        }
+
+        //o No n vai percorrer a lista, o No Before vai seguir o n até que n seja o ultimo
+        //dai o proximo de before vira null
         No n = head;
+        No before = n;
 
         //percorre a lista para achar o fim
         while (n.getProximo() != null){
-            n = n.getProximo();
-        }
+                before = n;
+                n = n.getProximo();
+            }
+
+        before.setProximo(null);
     }
 
     public void removeIndice(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeIndice'");
+    	No n = head;
+    	
+        //percorre a lista ate chegar na posicao
+    	for (int f= 0; f<i; f++) {
+    		n = n.getProximo();
+    	}
+    	
+    	//remove a posicao
+    	n.setProximo(null);
     }
 
     public void insereElementoPosicao(int i, int j) {
