@@ -26,7 +26,7 @@ public class Lista {
     }
 
     public boolean buscaElemento(int i) {
-        //se nao existe, retorna falso
+        //se nao existe lista, retorna falso
         if (head == null){
             return false;
         }
@@ -62,7 +62,7 @@ public class Lista {
             }
         }
 
-        //se sair do loop, eh por que achou
+        //se sair do loop, eh por que achou na posicao count
         return count;
     }
 
@@ -121,7 +121,7 @@ public class Lista {
     	}
     	
     	//remove a posicao
-    	n.setProximo(null);
+    	n.setProximo(n.getProximo().getProximo());
     }
 
     public void insereElementoPosicao(int i, int j) {
