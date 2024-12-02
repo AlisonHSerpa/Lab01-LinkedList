@@ -107,7 +107,7 @@ public class Lista {
         while (n.getProximo() != null){
                 before = n;
                 n = n.getProximo();
-            }
+        }
 
         before.setProximo(null);
     }
@@ -125,8 +125,26 @@ public class Lista {
     }
 
     public void insereElementoPosicao(int i, int j) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElementoPosicao'");
+    	//busca a posicao
+    	No n = head;
+    	No anterior = n;
+    	for (int b=0 ; b<=j ; b++) {
+    		anterior = n;
+    		n = n.getProximo();
+    		
+        	//se for null, adiciona no i no final
+    		if (n == null) {
+    			insereFim(i);
+    			return;
+    		}
+    	}
+    	
+    	//caso contrario colocar i para apontar para o No na posicao j
+    	No novo = new No(i);
+    	novo.setProximo(n);
+
+    	//e anterior comeca a apontar para o novo No da posicao j
+    	anterior.setProximo(novo);
     }
     
 }
